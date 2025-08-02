@@ -24,7 +24,7 @@ const EmailSignup = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-warm">
+    <section id="email-signup" className="py-20 bg-[#f7c496]">
       <div className="container mx-auto px-4">
         <Card className="max-w-2xl mx-auto border-0 shadow-elegant bg-card/95 backdrop-blur-sm">
           <CardContent className="p-12 text-center">

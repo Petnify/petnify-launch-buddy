@@ -14,15 +14,51 @@ const ContactSection = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would handle the form submission
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. We'll get back to you soon!",
-    });
-    setFormData({ name: "", email: "", message: "" });
+  
+    try {
+      // For local development testing - simulate API response
+      if (import.meta.env.DEV) {
+        // Simulate API delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Simulate success response
+        toast({
+          title: "Message Sent! (Dev Mode)",
+          description: "This is a test response. In production, this would send via SendGrid.",
+        });
+        
+        setFormData({ name: "", email: "", message: "" });
+        return;
+      }
+
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!res.ok) throw new Error("Failed to send message");
+  
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. We'll get back to you soon!",
+      });
+  
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Something went wrong.",
+        description: "Please try again later or contact us at info@petnify.co.",
+        variant: "destructive",
+      });
+      console.error("Send error:", error);
+    }
   };
+  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({
@@ -32,7 +68,7 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20 bg-background">
+    <section id="contact" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto">
           {/* Contact Info */}
@@ -55,10 +91,10 @@ const ContactSection = () => {
                 <div>
                   <h3 className="font-semibold text-foreground">Email Us</h3>
                   <a 
-                    href="mailto:hello@petnify.app" 
+                    href="mailto:info@petnify.co" 
                     className="text-primary hover:text-primary/80 transition-colors"
                   >
-                    hello@petnify.app
+                    info@petnify.co
                   </a>
                 </div>
               </div>

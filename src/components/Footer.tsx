@@ -28,8 +28,8 @@ const Footer = () => {
               <li><a href="#features" className="hover:text-primary-foreground transition-colors">Features</a></li>
               <li><a href="#contact" className="hover:text-primary-foreground transition-colors">Contact</a></li>
               <li><a href="#faq" className="hover:text-primary-foreground transition-colors">FAQ</a></li>
-              <li><a href="#privacy" className="hover:text-primary-foreground transition-colors">Privacy Policy</a></li>
-              <li><a href="#terms" className="hover:text-primary-foreground transition-colors">Terms of Service</a></li>
+              <li><a href="/privacy" className="hover:text-primary-foreground transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms" className="hover:text-primary-foreground transition-colors">Terms of Service</a></li>
             </ul>
           </div>
 

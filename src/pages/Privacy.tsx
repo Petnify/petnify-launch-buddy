@@ -20,7 +20,7 @@ const Privacy = () => {
             <CardTitle className="text-3xl sm:text-4xl font-bold text-foreground">
               Privacy Policy
             </CardTitle>
-            <p className="text-muted-foreground">Last updated: January 2024</p>
+            <p className="text-muted-foreground">Last updated: August 2025</p>
           </CardHeader>
           
           <CardContent className="prose prose-lg max-w-none space-y-8 text-foreground">

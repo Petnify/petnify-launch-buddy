@@ -1,4 +1,5 @@
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useEffect } from "react";
 
 const faqs = [
   {
@@ -28,11 +29,48 @@ const faqs = [
 ];
 
 const FAQSection = () => {
+  useEffect(() => {
+    // Add FAQ Schema.org structured data
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+
+    // Remove existing FAQ schema if present
+    const existingSchema = document.querySelector('script[data-faq-schema]');
+    if (existingSchema) {
+      existingSchema.remove();
+    }
+
+    // Add new FAQ schema
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-faq-schema', 'true');
+    script.textContent = JSON.stringify(faqSchema);
+    document.head.appendChild(script);
+
+    // Cleanup on unmount
+    return () => {
+      const scriptToRemove = document.querySelector('script[data-faq-schema]');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, []);
+
   return (
-    <section className="py-20 bg-muted/30" id="faq">
+    <section className="py-20 bg-muted/30" id="faq" aria-labelledby="faq-heading">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
+          <h2 id="faq-heading" className="text-3xl sm:text-4xl font-bold text-foreground mb-6">
             Frequently Asked Questions
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">

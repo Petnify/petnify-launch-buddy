@@ -11,7 +11,7 @@ const HeroSection = () => {
           <div className="text-center lg:text-left space-y-8">
             <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
               <img 
-                src="/lovable-uploads/a2869fab-aacd-4621-b47e-55afca331bdc.png" 
+                src="/src/assets/logo.png" 
                 alt="Petnify Logo" 
                 className="w-16 h-16 sm:w-20 sm:h-20"
               />
@@ -33,6 +33,9 @@ const HeroSection = () => {
               <Button 
                 size="lg" 
                 className="bg-gradient-hero text-hero-foreground hover:shadow-glow transition-all duration-300 px-8 py-6 text-lg font-semibold"
+                onClick={() => {
+                  window.location.href = "#email-signup";
+                }}
               >
                 <Mail className="mr-2 h-5 w-5" />
                 Get Early Access
@@ -41,6 +44,9 @@ const HeroSection = () => {
                 variant="outline" 
                 size="lg"
                 className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 px-8 py-6 text-lg"
+                onClick={() => {
+                  window.location.href = "#features";
+                }}
               >
                 Learn More
               </Button>
@@ -52,13 +58,13 @@ const HeroSection = () => {
             <div className="relative">
               <div className="w-80 h-80 lg:w-96 lg:h-96 bg-gradient-primary rounded-3xl shadow-elegant flex items-center justify-center">
                 <div className="text-center text-primary-foreground">
-                  <div className="w-32 h-32 mx-auto mb-4 bg-primary-foreground/20 rounded-2xl flex items-center justify-center">
+                  {/* <div className="w-32 h-32 mx-auto mb-4 bg-primary-foreground/20 rounded-2xl flex items-center justify-center">
                     <img 
-                      src="/lovable-uploads/a2869fab-aacd-4621-b47e-55afca331bdc.png" 
+                      src="/src/assets/petnify-logo.svg" 
                       alt="App Preview" 
                       className="w-20 h-20 opacity-80"
                     />
-                  </div>
+                  </div> */}
                   <p className="text-xl font-semibold">App Preview</p>
                   <p className="text-sm opacity-80 mt-2">Coming Soon</p>
                 </div>
