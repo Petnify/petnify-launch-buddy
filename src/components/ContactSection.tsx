@@ -19,19 +19,7 @@ const ContactSection = () => {
   
     try {
       // For local development testing - simulate API response
-      if (import.meta.env.DEV) {
-        // Simulate API delay
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        
-        // Simulate success response
-        toast({
-          title: "Message Sent! (Dev Mode)",
-          description: "This is a test response. In production, this would send via SendGrid.",
-        });
-        
-        setFormData({ name: "", email: "", message: "" });
-        return;
-      }
+      
 
       const res = await fetch("/api/send-email", {
         method: "POST",
